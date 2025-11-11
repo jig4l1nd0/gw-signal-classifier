@@ -1,1 +1,6 @@
 /.venv
+pycache/
+*.pyc
+.DS_Store
+Thumbs.db
+/data
