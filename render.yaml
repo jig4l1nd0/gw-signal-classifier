@@ -1,0 +1,30 @@
+# Render "Blueprint" configuration file
+# Tells Render how to build and deploy our service.
+
+services:
+  # A single web service
+  - type: web
+    # Service name 
+    name: gw-signal-denoiser
+    
+    # Runtime environment: Docker
+    # Render will look for and use our 'Dockerfile' automatically
+    env: docker
+    
+    # Free plan region (Oregon)
+    region: oregon
+    
+    # Important!
+    plan: free
+    
+    # Git branch that triggers deployment
+    branch: main
+    
+    # Enable auto-deploy every time you 'git push' to 'main'
+    autoDeploy: true
+    
+    # Health check
+    # Render uses this to know if the app started correctly.
+    # Matches the HEALTHCHECK we put in the Dockerfile.
+    healthCheck:
+      path: /_stcore/health
