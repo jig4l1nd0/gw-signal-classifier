@@ -87,9 +87,64 @@ def main(args):
     print(f"Data saved to {signals_path} and {masks_path}")
 
 
+def generate_dataset(args):
+    """Main function to generate and save data."""
+    noisy_signals = []
+    masks = []
+
+    print(f"Generating {args.num_samples} samples...")
+    # Use tqdm for a nice progress bar
+    for _ in tqdm(range(args.num_samples)):
+        signal, mask = generate_sample(
+            length=2048,
+            noise_level=args.noise_level
+            )
+        noisy_signals.append(signal)
+        masks.append(mask)
+
+    noisy_signals_np = np.array(noisy_signals)
+    masks_np = np.array(masks)
+
+    # Create output directory if it doesn't exist
+    os.makedirs(args.output_dir, exist_ok=True)
+
+    # Save files
+    signals_path = os.path.join(args.output_dir, "noisy_signals.npy")
+    masks_path = os.path.join(args.output_dir, "masks.npy")
+
+    np.save(signals_path, noisy_signals_np)
+    np.save(masks_path, masks_np)
+
+    print("\nData generation complete.")
+    print(f"Noisy signals shape: {noisy_signals_np.shape}")
+    print(f"Masks shape: {masks_np.shape}")
+    print(f"Data saved to {signals_path} and {masks_path}")
+
+
+def generate_single_file(output_filename, noise_level):
+    """
+    Generates a single .npy file of noisy signal to use as example.
+    """
+    print(f"Generating example file with noise level {noise_level}...")
+    noisy_signal, _ = generate_sample(
+        length=2048,
+        noise_level=noise_level
+    )
+    # Ensure the shape is (2048,) for the app
+    noisy_signal = noisy_signal.reshape(-1)
+
+    np.save(output_filename, noisy_signal)
+    print(f"Example file saved to: {output_filename} "
+          f"(Shape: {noisy_signal.shape})")
+
+
 if __name__ == "__main__":
     # This allows us to run the script from the command line
-    parser = argparse.ArgumentParser(description="Generate synthetic GW data.")
+    parser = argparse.ArgumentParser(
+        description="Generate synthetic GW data."
+    )
+
+    # --- Existing arguments ---
     parser.add_argument("--num-samples",
                         type=int, default=10000,
                         help="Number of samples to generate.")
@@ -100,5 +155,18 @@ if __name__ == "__main__":
                         type=float,
                         default=0.5,
                         help="Standard deviation of Gaussian noise.")
+
+    parser.add_argument("--generate-single",
+                        type=str,
+                        default=None,
+                        help="Generate a single example file with this "
+                             "name (e.g., 'example_signal.npy').")
+
     args = parser.parse_args()
-    main(args)
+
+    if args.generate_single:
+        # Mode: Generate a single example file
+        generate_single_file(args.generate_single, args.noise_level)
+    else:
+        # Mode: Generate training dataset (previous behavior)
+        generate_dataset(args)

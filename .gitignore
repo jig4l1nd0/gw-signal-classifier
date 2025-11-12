@@ -1,6 +1,7 @@
 /.venv
 pycache/
 *.pyc
+*.npy
 .DS_Store
 Thumbs.db
 /data
