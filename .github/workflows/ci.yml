@@ -37,7 +37,7 @@ jobs:
         # Install flake8 for linting (style checking)
         pip install flake8
         # Install app dependencies (CPU version)
-        pip install -r requirements.txt --index-url https://download.pytorch.org/whl/cpu
+        pip install -r requirements.txt
 
     # Step 4: Linting with flake8
     - name: 4. Lint with flake8
