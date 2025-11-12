@@ -19,7 +19,9 @@ def generate_chirp(length=2048, f_start=0.01, f_end=0.2):
     return signal / np.max(np.abs(signal))
 
 
-def generate_sample(length=2048, signal_length_min=400, signal_length_max=1000, noise_level=1.5):
+def generate_sample(
+    length=2048, signal_length_min=400, signal_length_max=1000, noise_level=1.5
+):
     """Generates one noisy signal sample and its corresponding mask."""
 
     # 1. Create the clean signal (chirp)
@@ -59,7 +61,10 @@ def main(args):
     print(f"Generating {args.num_samples} samples...")
     # Use tqdm for a nice progress bar
     for _ in tqdm(range(args.num_samples)):
-        signal, mask = generate_sample(length=2048, noise_level=args.noise_level)
+        signal, mask = generate_sample(
+            length=2048,
+            noise_level=args.noise_level
+            )
         noisy_signals.append(signal)
         masks.append(mask)
 
@@ -93,7 +98,7 @@ if __name__ == "__main__":
                         help="Directory to save the .npy files.")
     parser.add_argument("--noise-level",
                         type=float,
-                        default=1.5,
+                        default=0.5,
                         help="Standard deviation of Gaussian noise.")
     args = parser.parse_args()
     main(args)
