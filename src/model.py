@@ -41,7 +41,7 @@ class UpBlock(nn.Module):
                                      in_channels // 2,
                                      kernel_size=2,
                                      stride=2)
-        self.conv = DoubleConv(in_channels, out_channels) # Note: in_channels here
+        self.conv = DoubleConv(in_channels, out_channels)  # Note: in_channels here
 
     def forward(self, x1, x2):
         """
