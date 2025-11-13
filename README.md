@@ -17,7 +17,7 @@ A deep learning application that uses a 1D U-Net to detect and isolate gravitati
 
 ## 🎯 Demo
 
-Try the live application: [Coming Soon - Deploy to Render]
+Try the live application: (https://gw-signal-classifier.onrender.com)
 
 ### Example Results
 
@@ -45,7 +45,7 @@ Our 1D U-Net neural network:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/gw-signal-classifier.git
+git clone https://github.com/jig4l1nd0/gw-signal-classifier.git
 cd gw-signal-classifier
 
 # Build and run with Docker
@@ -59,7 +59,7 @@ Open your browser to `http://localhost:8501`
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/gw-signal-classifier.git
+git clone https://github.com/jig4l1nd0/gw-signal-classifier.git
 cd gw-signal-classifier
 
 # Create virtual environment
@@ -313,7 +313,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Author**: Josue Galindo
 - **Email**: [ji.g4l1nd0.com]
 - **GitHub**: [@jig4l1nd0](https://github.com/jig4l1nd0/)
-- **LinkedIn**: (https://www.linkedin.com/in/josue-galindo/)
+- **LinkedIn**: [josue-galindo](https://www.linkedin.com/in/josue-galindo/)
 
 ## 🔗 Related Projects
 
