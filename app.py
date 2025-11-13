@@ -113,33 +113,33 @@ st.write("This app uses a 1D U-Net (in PyTorch) to detect and isolate "
 with st.expander("📋 How to prepare your data"):
     st.markdown("""
     ### Data Format Requirements
-    
+
     To use this classifier with your own data, prepare your signal as follows:
-    
+
     **File Format:**
     - Save as `.npy` file using `numpy.save()`
     - Example: `np.save('my_signal.npy', signal_array)`
-    
+
     **Signal Requirements:**
     - **Shape**: Exactly `(2048,)` - a 1D NumPy array
     - **Data type**: Float32 or Float64
     - **Sampling**: Assumed to be evenly spaced time samples
     - **Normalization**: Signal should be roughly normalized (amplitude ~0-10)
-    
+
     **Example Python code to prepare data:**
     ```python
     import numpy as np
-    
+
     # Your signal data (must be exactly 2048 samples)
     my_signal = np.array([...])  # shape: (2048,)
-    
+
     # Optional: normalize your signal
     my_signal = my_signal / np.std(my_signal)
-    
+
     # Save as .npy file
     np.save('my_gravitational_wave_signal.npy', my_signal)
     ```
-    
+
     **Signal Content:**
     - Time series data representing potential gravitational wave signals
     - Can contain noise (the model is trained to handle noisy signals)

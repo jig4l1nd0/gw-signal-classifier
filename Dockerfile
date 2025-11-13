@@ -10,8 +10,7 @@ COPY requirements.txt .
 # 2. Install dependencies
 # Key! Use PyTorch CPU-only index to keep the image lightweight
 RUN pip install --no-cache-dir \
-    -r requirements.txt \
-    --index-url https://download.pytorch.org/whl/cpu
+    -r requirements.txt 
 
 # --- STAGE 2: 'Final' ---
 # Start again from the same clean base image
